@@ -24,7 +24,7 @@ nou_Exercici(2);
 // A continuació creem una matriu setmanal amb tots els dies de la setmana.
 // Aleshores intentem imprimir el primer dia, que és dilluns, executem el codi i veiem què passa.
 $setmana = ["dilluns", "dimarts", "dimecres", "dijous", "divendres", "disabte", "diumenge"];
-$dilluns = $setmana[1];
+$dilluns = $setmana[0];
 
 echo $dilluns;
 
@@ -32,8 +32,8 @@ echo $dilluns;
 nou_Exercici(3);
 // === Exercici 3 ===
 // Això hauria de mostrar "Depurat !" , arregleu-ho de manera que aquest sigui el text literal
-$str = "Depurat ! A més de divertit";
-echo substr($str, 0, 10);
+$str = "Depurat !";
+echo substr($str, 0, 10);   
 
 nou_Exercici(4);
 // === Exercici 4 ===
@@ -61,10 +61,49 @@ for ($lletra = ord('a'); $lletra <= ord('z'); $lletra++) {
 print_r($arr); // Array ([0] => a, [1] => b, [2] => c, ...) a-z array de l'alfabet
 
 
+nou_Exercici(6);
+// === Final Exercici ===
+// El següent codi hauria de mostrar el següent al final:
+// Aquest és el nom: $nom - $nom2
+// Les variables $nom es combinen aleatòriament com es veu al codi, corregeix tots els errors mantenint la funcionalitat!
+// Exemples: capità estrany, vídua formiga, home de ferro, ...
+$arr = [];
+
+
+function combineNames($str1 = "", $str2 = "") {
+    $params = [$str1, $str2];
+    foreach($params as $param) {
+        if ($param == "") {
+            $param = randomHeroName();
+        }
+    }
+    echo implode($params, " - ");
+}
+
+
+function randomGenerate($arr, $amount) {
+    for ($i = $amount; $i > 0; $i--) {
+        array_push($arr, randomHeroName());
+    }
+
+    return $amount;
+}
+
+function randomHeroName()
+{
+    $hero_firstnames = ["captain", "doctor", "iron", "Hank", "ant", "Wasp", "the", "Hawk", "Spider", "Black", "Carol"];
+    $hero_lastnames = ["America", "Strange", "man", "Pym", "girl", "hulk", "eye", "widow", "panther", "daredevil", "marvel"];
+    $heroes = [$hero_firstnames, $hero_lastnames];
+    $randname = $heroes[rand(0,count($heroes))][rand(0, 10)];
+
+    echo $randname;
+}
+
+echo "El nom és: " . combineNames();
 
 nou_Exercici(7);
 function copyright(int $any) {
-    return "&copy; " .$any." Entorns de Desenvolupament";
+    return "&copy; $any Entorns de Desenvolupament";
 }
 //imprimeix el copyright
 echo copyright(date('Y'));
@@ -96,20 +135,20 @@ function isLinkValid(string $link) {
     $inacceptables = array('https:','.doc','.pdf', '.jpg', '.jpeg', '.gif', '.bmp', '.png');
 
     foreach ($inacceptables as $inacceptable) {
-        if (strpos($link, $inacceptable) !== false) {
+        if (strpos($link, $inacceptable) == true) {
             return 'Trobat un inacceptable<br />';
         }
     }
     return 'Acceptable<br />';
 }
 //link invàlid
-echo isLinkValid('http://www.google.com/hack.pdf');
+isLinkValid('http://www.google.com/hack.pdf');
 //link invàlid
-echo isLinkValid('https://google.com');
+isLinkValid('https://google.com');
 //link VÀLID
-echo isLinkValid('http://google.com');
+isLinkValid('http://google.com');
 //link VALID
-echo isLinkValid('http://google.com/test.txt');
+isLinkValid('http://google.com/test.txt');
 
 
 nou_Exercici(10);
